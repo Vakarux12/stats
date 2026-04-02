@@ -208,7 +208,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="repo-row" style="height: 50px; animation-delay: 1.4s;">
+          <tr class="repo-row" style="height: 33.333333333333336px; animation-delay: 1.4s;">
+          <td class="repo-name" style="width: 186px; text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <span style="margin-left: 10px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">JoshKeyboardsounds</span>
+            </div>
+          </td>
+          <td class="unique-count" style="width: 130px; text-align: center;">2</td>
+          <td class="date-range" style="width: 120px; text-align: center;">19.03 - 01.04</td>
+        </tr>
+          <tr class="repo-row" style="height: 33.333333333333336px; animation-delay: 2.15s;">
           <td class="repo-name" style="width: 186px; text-align: center;">
             <div style="display: flex; align-items: center; justify-content: center;">
               <span style="margin-left: 10px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Vakarux12</span>
@@ -217,7 +226,7 @@
           <td class="unique-count" style="width: 130px; text-align: center;">2</td>
           <td class="date-range" style="width: 120px; text-align: center;">19.03 - 01.04</td>
         </tr>
-          <tr class="repo-row" style="height: 50px; animation-delay: 2.9s;">
+          <tr class="repo-row" style="height: 33.333333333333336px; animation-delay: 2.9s;">
           <td class="repo-name" style="width: 186px; text-align: center;">
             <div style="display: flex; align-items: center; justify-content: center;">
               <span style="margin-left: 10px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">stats</span>
