@@ -224,18 +224,9 @@
             </div>
           </td>
           <td class="unique-count" style="width: 130px; text-align: center;">2</td>
-          <td class="date-range" style="width: 120px; text-align: center;">26.03 - 08.04</td>
+          <td class="date-range" style="width: 120px; text-align: center;">27.03 - 09.04</td>
         </tr>
           <tr class="repo-row" style="height: 20px; animation-delay: 2.15s;">
-          <td class="repo-name" style="width: 186px; text-align: center;">
-            <div style="display: flex; align-items: center; justify-content: center;">
-              <span style="margin-left: 10px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">stats</span>
-            </div>
-          </td>
-          <td class="unique-count" style="width: 130px; text-align: center;">2</td>
-          <td class="date-range" style="width: 120px; text-align: center;">26.03 - 08.04</td>
-        </tr>
-          <tr class="repo-row" style="height: 20px; animation-delay: 2.525s;">
           <td class="repo-name" style="width: 186px; text-align: center;">
             <div style="display: flex; align-items: center; justify-content: center;">
               <span style="margin-left: 10px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Psych-ward-game</span>
@@ -244,10 +235,19 @@
           <td class="unique-count" style="width: 130px; text-align: center;">1</td>
           <td class="date-range" style="width: 120px; text-align: center;">27.03 - 09.04</td>
         </tr>
-          <tr class="repo-row" style="height: 20px; animation-delay: 2.9s;">
+          <tr class="repo-row" style="height: 20px; animation-delay: 2.525s;">
           <td class="repo-name" style="width: 186px; text-align: center;">
             <div style="display: flex; align-items: center; justify-content: center;">
               <span style="margin-left: 10px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">pv-addon-reminder</span>
+            </div>
+          </td>
+          <td class="unique-count" style="width: 130px; text-align: center;">1</td>
+          <td class="date-range" style="width: 120px; text-align: center;">27.03 - 09.04</td>
+        </tr>
+          <tr class="repo-row" style="height: 20px; animation-delay: 2.9s;">
+          <td class="repo-name" style="width: 186px; text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <span style="margin-left: 10px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">scripts</span>
             </div>
           </td>
           <td class="unique-count" style="width: 130px; text-align: center;">1</td>
