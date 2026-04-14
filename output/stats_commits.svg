@@ -152,7 +152,7 @@
   <g transform="translate(83, 80)">
     <text class="stat tc" y="15" text-anchor="middle">273</text>
     <text class="label tc" y="50" text-anchor="middle">Total Contributions</text>
-    <text class="date tc" y="73" text-anchor="middle">Apr 22, 2024 - Apr 13, 2026</text>
+    <text class="date tc" y="73" text-anchor="middle">Apr 22, 2024 - Apr 14, 2026</text>
   </g>
 
   <!-- Section 2: Current Streak -->
@@ -188,6 +188,6 @@
 
   <!-- Footer -->
   <g transform="translate(230, 188)">
-    <text class="footer" text-anchor="middle">Updated last at: Apr 14 2026, 01:43</text>
+    <text class="footer" text-anchor="middle">Updated last at: Apr 14 2026, 05:36</text>
   </g>
 </svg>
