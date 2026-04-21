@@ -46,7 +46,7 @@ jobs:
       - name: Switch to the main branch
         run: |
           git fetch origin main
-          git checkout main
+          git checkout -f main
           git pull origin main
 
       - name: Indexing and adding SVG
