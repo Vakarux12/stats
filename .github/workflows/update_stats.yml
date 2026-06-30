@@ -36,7 +36,8 @@ jobs:
           node src/generators/stats_commits.js
           node src/generators/stats_general.js
           node src/generators/stats_langs.js
-          node src/generators/stats_visitors.js 
+          node src/generators/stats_visitors.js
+          node src/generators/stats_json.js
 
       - name: Setup Git identity
         run: |
@@ -51,7 +52,7 @@ jobs:
 
       - name: Indexing and adding SVG
         run: |
-          git add output/*.svg
+          git add output/*.svg output/stats.json
 
       - name: Commit and push updated SVG
         run: |
