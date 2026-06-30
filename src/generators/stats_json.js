@@ -31,8 +31,9 @@ async function gql(query, variables = {}) {
   return data.data;
 }
 
-async function rest(endpoint) {
+async function rest(endpoint, maxRetries = 8) {
   let response;
+  let attempts = 0;
   do {
     response = await fetch(`${REST_API}${endpoint}`, {
       headers: {
@@ -41,7 +42,8 @@ async function rest(endpoint) {
       },
     });
     if (response.status === 202) {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      if (++attempts >= maxRetries) throw new Error(`REST ${endpoint} timed out (202 after ${maxRetries} retries)`);
+      await new Promise((resolve) => setTimeout(resolve, 3000));
     } else if (!response.ok) {
       throw new Error(`REST ${endpoint} failed: ${response.status}`);
     }
@@ -142,13 +144,9 @@ async function main() {
       cursor = end;
     }
 
-    let totalAdditions = 0;
-    let totalDeletions = 0;
-    for (const repo of repoSet) {
-      const { additions, deletions } = await fetchLinesForRepo(repo);
-      totalAdditions += additions;
-      totalDeletions += deletions;
-    }
+    const lineResults = await Promise.all([...repoSet].map(fetchLinesForRepo));
+    const totalAdditions = lineResults.reduce((s, r) => s + r.additions, 0);
+    const totalDeletions = lineResults.reduce((s, r) => s + r.deletions, 0);
 
     const latestCommit = await fetchLatestCommit();
 
