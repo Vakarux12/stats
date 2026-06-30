@@ -81,22 +81,38 @@ async function fetchContributionsForPeriod(from, to) {
 
 async function fetchLatestCommit() {
   try {
-    const events = await rest(`/users/${username}/events?per_page=100`);
-    for (const event of events) {
-      if (event.type === "PushEvent" && event.payload?.commits?.length > 0) {
-        const commits = event.payload.commits;
-        const latest = commits[commits.length - 1];
-        return {
-          repo: event.repo.name,
-          message: latest.message.split("\n")[0],
-          date: event.created_at,
-        };
+    // Search commits API returns the most recent commit by this user across all repos
+    const response = await fetch(
+      `${REST_API}/search/commits?q=author:${username}&sort=committer-date&order=desc&per_page=1`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/vnd.github+json",
+        },
       }
-    }
+    );
+    if (!response.ok) return null;
+    const data = await response.json();
+    const item = data.items?.[0];
+    if (!item) return null;
+    return {
+      repo: item.repository.full_name,
+      message: item.commit.message.split("\n")[0],
+      date: item.commit.committer.date,
+    };
   } catch {
-    // ignore
+    return null;
   }
-  return null;
+}
+
+async function fetchOwnedRepos() {
+  const data = await gql(
+    `query($u:String!){user(login:$u){repositories(first:100,ownerAffiliations:OWNER){nodes{nameWithOwner}}}}`,
+    { u: username }
+  );
+  return data.user.repositories.nodes
+    .map((r) => r.nameWithOwner)
+    .filter((r) => !isExcluded(r));
 }
 
 async function fetchLinesForRepo(repo) {
@@ -124,7 +140,7 @@ async function main() {
     const now = new Date();
 
     let totalCommits = 0;
-    const repoSet = new Set();
+    const reposTouchedSet = new Set();
 
     let cursor = new Date(createdAt);
     while (cursor < now) {
@@ -138,13 +154,15 @@ async function main() {
       totalCommits += col.contributionCalendar.totalContributions;
       for (const { repository } of col.commitContributionsByRepository) {
         if (!isExcluded(repository.nameWithOwner)) {
-          repoSet.add(repository.nameWithOwner);
+          reposTouchedSet.add(repository.nameWithOwner);
         }
       }
       cursor = end;
     }
 
-    const lineResults = await Promise.all([...repoSet].map(fetchLinesForRepo));
+    // Use owned repos only for line counts (matches what the SVG cards show)
+    const ownedRepos = await fetchOwnedRepos();
+    const lineResults = await Promise.all(ownedRepos.map(fetchLinesForRepo));
     const totalAdditions = lineResults.reduce((s, r) => s + r.additions, 0);
     const totalDeletions = lineResults.reduce((s, r) => s + r.deletions, 0);
 
@@ -152,7 +170,7 @@ async function main() {
 
     const stats = {
       commits: totalCommits,
-      reposTouched: repoSet.size,
+      reposTouched: reposTouchedSet.size,
       linesChanged: totalAdditions + totalDeletions,
       additions: totalAdditions,
       deletions: totalDeletions,
