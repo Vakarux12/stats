@@ -50,11 +50,11 @@ jobs:
           git checkout -f main
           git pull origin main
 
-      - name: Indexing and adding SVG
+      - name: Indexing and adding stats output
         run: |
-          git add output/*.svg output/stats.json
+          git add output/*.svg output/*.json
 
-      - name: Commit and push updated SVG
+      - name: Commit and push updated stats output
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             git commit -m "chore: update GitHub stats SVG (manual run)" --allow-empty
