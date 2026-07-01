@@ -1,0 +1,14 @@
+{
+  "commits": 806,
+  "reposTouched": 28,
+  "linesChanged": 69582,
+  "additions": 46189,
+  "deletions": 23393,
+  "netLines": 22796,
+  "latestCommit": {
+    "repo": "Orang-Studio/InstaDownload",
+    "message": "Create dependabot.yml",
+    "date": "2026-07-01T18:48:30.000+03:00"
+  },
+  "updatedAt": "2026-07-01T16:53:40.074Z"
+}
