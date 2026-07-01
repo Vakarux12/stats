@@ -3,6 +3,7 @@ import path from "path";
 
 const username = process.env.GITHUB_ACTOR;
 const token = process.env.ACCESS_TOKEN;
+const adasjuskUsername = "adasjusk";
 
 const excludedRepos = process.env.EXCLUDED_REPOS
   ? process.env.EXCLUDED_REPOS.split(",").map((r) => r.trim().toLowerCase())
@@ -57,12 +58,12 @@ function isExcluded(nameWithOwner) {
   return excludedRepos.includes(lower) || excludedRepos.includes(short);
 }
 
-async function fetchUserCreationDate() {
-  const data = await gql(`query($u:String!){user(login:$u){createdAt}}`, { u: username });
+async function fetchUserCreationDate(targetUsername) {
+  const data = await gql(`query($u:String!){user(login:$u){createdAt}}`, { u: targetUsername });
   return new Date(data.user.createdAt);
 }
 
-async function fetchContributionsForPeriod(from, to) {
+async function fetchContributionsForPeriod(targetUsername, from, to) {
   const data = await gql(
     `query($u:String!,$from:DateTime!,$to:DateTime!){
       user(login:$u){
@@ -74,16 +75,16 @@ async function fetchContributionsForPeriod(from, to) {
         }
       }
     }`,
-    { u: username, from: from.toISOString(), to: to.toISOString() }
+    { u: targetUsername, from: from.toISOString(), to: to.toISOString() }
   );
   return data.user.contributionsCollection;
 }
 
-async function fetchLatestCommit() {
+async function fetchLatestCommit(targetUsername) {
   try {
     // Search commits API returns the most recent commit by this user across all repos
     const response = await fetch(
-      `${REST_API}/search/commits?q=author:${username}&sort=committer-date&order=desc&per_page=1`,
+      `${REST_API}/search/commits?q=author:${targetUsername}&sort=committer-date&order=desc&per_page=1`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -105,24 +106,24 @@ async function fetchLatestCommit() {
   }
 }
 
-async function fetchOwnedRepos() {
+async function fetchOwnedRepos(targetUsername) {
   const data = await gql(
     `query($u:String!){user(login:$u){repositories(first:100,ownerAffiliations:OWNER){nodes{nameWithOwner}}}}`,
-    { u: username }
+    { u: targetUsername }
   );
   return data.user.repositories.nodes
     .map((r) => r.nameWithOwner)
     .filter((r) => !isExcluded(r));
 }
 
-async function fetchLinesForRepo(repo) {
+async function fetchLinesForRepo(targetUsername, repo) {
   try {
     const contributors = await rest(`/repos/${repo}/stats/contributors`);
     if (!Array.isArray(contributors)) return { additions: 0, deletions: 0 };
     let additions = 0;
     let deletions = 0;
     for (const entry of contributors) {
-      if (entry?.author?.login !== username) continue;
+      if (entry?.author?.login !== targetUsername) continue;
       for (const week of entry.weeks || []) {
         additions += week.a || 0;
         deletions += week.d || 0;
@@ -134,57 +135,65 @@ async function fetchLinesForRepo(repo) {
   }
 }
 
+async function buildStats(targetUsername, now) {
+  const createdAt = await fetchUserCreationDate(targetUsername);
+
+  let totalCommits = 0;
+  const reposTouchedSet = new Set();
+
+  let cursor = new Date(createdAt);
+  while (cursor < now) {
+    const end = new Date(
+      Math.min(
+        new Date(cursor.getFullYear() + 1, cursor.getMonth(), cursor.getDate()).getTime(),
+        now.getTime()
+      )
+    );
+    const col = await fetchContributionsForPeriod(targetUsername, cursor, end);
+    totalCommits += col.contributionCalendar.totalContributions;
+    for (const { repository } of col.commitContributionsByRepository) {
+      if (!isExcluded(repository.nameWithOwner)) {
+        reposTouchedSet.add(repository.nameWithOwner);
+      }
+    }
+    cursor = end;
+  }
+
+  // Use owned repos only for line counts (matches what the SVG cards show)
+  const ownedRepos = await fetchOwnedRepos(targetUsername);
+  const lineResults = await Promise.all(ownedRepos.map((repo) => fetchLinesForRepo(targetUsername, repo)));
+  const totalAdditions = lineResults.reduce((s, r) => s + r.additions, 0);
+  const totalDeletions = lineResults.reduce((s, r) => s + r.deletions, 0);
+
+  const latestCommit = await fetchLatestCommit(targetUsername);
+
+  return {
+    commits: totalCommits,
+    reposTouched: reposTouchedSet.size,
+    linesChanged: totalAdditions + totalDeletions,
+    additions: totalAdditions,
+    deletions: totalDeletions,
+    netLines: totalAdditions - totalDeletions,
+    latestCommit,
+    updatedAt: now.toISOString(),
+  };
+}
+
 async function main() {
   try {
-    const createdAt = await fetchUserCreationDate();
     const now = new Date();
-
-    let totalCommits = 0;
-    const reposTouchedSet = new Set();
-
-    let cursor = new Date(createdAt);
-    while (cursor < now) {
-      const end = new Date(
-        Math.min(
-          new Date(cursor.getFullYear() + 1, cursor.getMonth(), cursor.getDate()).getTime(),
-          now.getTime()
-        )
-      );
-      const col = await fetchContributionsForPeriod(cursor, end);
-      totalCommits += col.contributionCalendar.totalContributions;
-      for (const { repository } of col.commitContributionsByRepository) {
-        if (!isExcluded(repository.nameWithOwner)) {
-          reposTouchedSet.add(repository.nameWithOwner);
-        }
-      }
-      cursor = end;
-    }
-
-    // Use owned repos only for line counts (matches what the SVG cards show)
-    const ownedRepos = await fetchOwnedRepos();
-    const lineResults = await Promise.all(ownedRepos.map(fetchLinesForRepo));
-    const totalAdditions = lineResults.reduce((s, r) => s + r.additions, 0);
-    const totalDeletions = lineResults.reduce((s, r) => s + r.deletions, 0);
-
-    const latestCommit = await fetchLatestCommit();
-
-    const stats = {
-      commits: totalCommits,
-      reposTouched: reposTouchedSet.size,
-      linesChanged: totalAdditions + totalDeletions,
-      additions: totalAdditions,
-      deletions: totalDeletions,
-      netLines: totalAdditions - totalDeletions,
-      latestCommit,
-      updatedAt: now.toISOString(),
-    };
+    const stats = await buildStats(username, now);
+    const adasjuskStats = await buildStats(adasjuskUsername, now);
 
     const outDir = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..", "..", "output");
     if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
     const outPath = path.join(outDir, "stats.json");
+    const adasjuskOutPath = path.join(outDir, "stats-adasjusk.json");
     fs.writeFileSync(outPath, JSON.stringify(stats, null, 2));
+    fs.writeFileSync(adasjuskOutPath, JSON.stringify(adasjuskStats, null, 2));
     console.log(`JSON file created: ${outPath}`);
+    console.log(`JSON file created: ${adasjuskOutPath}`);
   } catch (error) {
     console.error("Error generating stats JSON:", error);
     process.exit(1);
