@@ -80,28 +80,88 @@ async function fetchContributionsForPeriod(targetUsername, from, to) {
   return data.user.contributionsCollection;
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// The Search API is sensitive to secondary rate limits (especially right after a
+// burst of concurrent REST calls) and can answer 403/429 with a Retry-After. It
+// also returns 202 while GitHub builds the index. Retry those instead of silently
+// giving up, which is why latestCommit used to always come back null.
+async function githubGet(endpoint, accept, maxRetries = 6) {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    const response = await fetch(`${REST_API}${endpoint}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: accept,
+        "User-Agent": "stats-generator",
+      },
+    });
+    if (response.ok) return response.json();
+    if (response.status === 202 || response.status === 403 || response.status === 429) {
+      const retryAfter = Number(response.headers.get("retry-after"));
+      const wait = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1);
+      await sleep(wait);
+      continue;
+    }
+    throw new Error(`GitHub GET ${endpoint} failed: ${response.status}`);
+  }
+  throw new Error(`GitHub GET ${endpoint} exhausted retries`);
+}
+
+async function fetchLatestCommitViaSearch(targetUsername) {
+  // Search commits API returns the most recent commit by this user across all repos
+  const data = await githubGet(
+    `/search/commits?q=author:${targetUsername}&sort=committer-date&order=desc&per_page=1`,
+    "application/vnd.github+json"
+  );
+  const item = data.items?.[0];
+  if (!item) return null;
+  return {
+    repo: item.repository.full_name,
+    message: item.commit.message.split("\n")[0],
+    date: item.commit.committer.date,
+  };
+}
+
+async function fetchLatestCommitViaRepos(targetUsername) {
+  // Fallback that avoids the Search API entirely: walk the most recently pushed
+  // repos and grab the newest commit actually authored by this user.
+  const repos = await githubGet(
+    `/users/${targetUsername}/repos?sort=pushed&per_page=10`,
+    "application/vnd.github+json"
+  );
+  if (!Array.isArray(repos)) return null;
+  for (const repo of repos) {
+    if (isExcluded(repo.full_name)) continue;
+    try {
+      const commits = await githubGet(
+        `/repos/${repo.full_name}/commits?author=${targetUsername}&per_page=1`,
+        "application/vnd.github+json"
+      );
+      const commit = Array.isArray(commits) ? commits[0] : null;
+      if (!commit) continue;
+      return {
+        repo: repo.full_name,
+        message: commit.commit.message.split("\n")[0],
+        date: commit.commit.committer.date,
+      };
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
+
 async function fetchLatestCommit(targetUsername) {
   try {
-    // Search commits API returns the most recent commit by this user across all repos
-    const response = await fetch(
-      `${REST_API}/search/commits?q=author:${targetUsername}&sort=committer-date&order=desc&per_page=1`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/vnd.github+json",
-        },
-      }
-    );
-    if (!response.ok) return null;
-    const data = await response.json();
-    const item = data.items?.[0];
-    if (!item) return null;
-    return {
-      repo: item.repository.full_name,
-      message: item.commit.message.split("\n")[0],
-      date: item.commit.committer.date,
-    };
-  } catch {
+    const viaSearch = await fetchLatestCommitViaSearch(targetUsername);
+    if (viaSearch) return viaSearch;
+  } catch (error) {
+    console.warn(`Latest commit via search failed for ${targetUsername}: ${error.message}`);
+  }
+  try {
+    return await fetchLatestCommitViaRepos(targetUsername);
+  } catch (error) {
+    console.warn(`Latest commit via repos failed for ${targetUsername}: ${error.message}`);
     return null;
   }
 }
@@ -159,13 +219,15 @@ async function buildStats(targetUsername, now) {
     cursor = end;
   }
 
+  // Fetch the latest commit before the concurrent line-count burst below, so the
+  // rate-limit-sensitive Search API isn't hit right after ~100 parallel requests.
+  const latestCommit = await fetchLatestCommit(targetUsername);
+
   // Use owned repos only for line counts (matches what the SVG cards show)
   const ownedRepos = await fetchOwnedRepos(targetUsername);
   const lineResults = await Promise.all(ownedRepos.map((repo) => fetchLinesForRepo(targetUsername, repo)));
   const totalAdditions = lineResults.reduce((s, r) => s + r.additions, 0);
   const totalDeletions = lineResults.reduce((s, r) => s + r.deletions, 0);
-
-  const latestCommit = await fetchLatestCommit(targetUsername);
 
   return {
     commits: totalCommits,

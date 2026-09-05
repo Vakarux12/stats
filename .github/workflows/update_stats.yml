@@ -6,7 +6,11 @@ on:
   workflow_dispatch:        
 
 permissions:
-  contents: write           
+  contents: write
+
+concurrency:
+  group: update-stats
+  cancel-in-progress: false           
 
 jobs:
   update-stats:
@@ -14,14 +18,15 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0      
+          ref: main
+          fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'  
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
@@ -30,6 +35,7 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.repository_owner }}
           EXCLUDED_LANGS: ${{ secrets.EXCLUDED_LANGS }}
           EXCLUDED_REPOS: ${{ secrets.EXCLUDED_REPOS }}
         run: |
@@ -41,31 +47,18 @@ jobs:
 
       - name: Setup Git identity
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Switch to the main branch
-        run: |
-          git fetch origin main
-          git checkout -f main
-          git pull origin main
-
-      - name: Indexing and adding stats output
-        run: |
-          git add output/*.svg output/*.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Commit and push updated stats output
         run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            git commit -m "chore: update GitHub stats SVG (manual run)" --allow-empty
-            git push origin main
-          else
-            if git diff --cached --quiet; then
-              git push origin main
-            else
-              git commit -m "chore: update GitHub stats SVG"
-              git push origin main
-            fi
+          git add output/*.svg output/*.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
           fi
+          git commit -m "chore: update GitHub stats SVG"
+          git pull --rebase origin main
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
