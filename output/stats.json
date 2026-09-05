@@ -6,9 +6,9 @@
   "deletions": 97494,
   "netLines": 326618,
   "latestCommit": {
-    "repo": "Vakarux12/service-app",
-    "message": "ceven more",
-    "date": "2026-09-05T16:09:55.000Z"
+    "repo": "Vakarux12/stats",
+    "message": "fix: generate stats before git ops so CI no longer discards fresh output",
+    "date": "2026-09-05T23:23:26.000+03:00"
   },
-  "updatedAt": "2026-09-05T20:24:04.970Z"
+  "updatedAt": "2026-09-05T21:24:06.180Z"
 }
