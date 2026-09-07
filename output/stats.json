@@ -1,14 +1,14 @@
 {
-  "commits": 852,
+  "commits": 858,
   "reposTouched": 32,
-  "linesChanged": 534650,
-  "additions": 434741,
-  "deletions": 99909,
-  "netLines": 334832,
+  "linesChanged": 537771,
+  "additions": 437082,
+  "deletions": 100689,
+  "netLines": 336393,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "Complete v3->Android port: settings tools, username gate, notification",
-    "date": "2026-09-07T09:54:56.000Z"
+    "message": "chore(android): untrack .gradle cache/locks",
+    "date": "2026-09-07T16:44:08.000Z"
   },
-  "updatedAt": "2026-09-07T11:18:36.142Z"
+  "updatedAt": "2026-09-07T17:01:48.997Z"
 }
