@@ -1,14 +1,14 @@
 {
-  "commits": 858,
+  "commits": 862,
   "reposTouched": 32,
-  "linesChanged": 537771,
-  "additions": 437082,
-  "deletions": 100689,
-  "netLines": 336393,
+  "linesChanged": 538044,
+  "additions": 437310,
+  "deletions": 100734,
+  "netLines": 336576,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "chore(android): untrack .gradle cache/locks",
-    "date": "2026-09-07T16:44:08.000Z"
+    "message": "security(backend): tighten CORS to explicit methods and headers",
+    "date": "2026-09-08T18:19:42.000Z"
   },
-  "updatedAt": "2026-09-08T16:59:29.473Z"
+  "updatedAt": "2026-09-08T19:47:24.864Z"
 }
