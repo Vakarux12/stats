@@ -1,5 +1,5 @@
 {
-  "commits": 880,
+  "commits": 881,
   "reposTouched": 32,
   "linesChanged": 538095,
   "additions": 437303,
@@ -7,8 +7,8 @@
   "netLines": 336511,
   "latestCommit": {
     "repo": "Orang-Studio/InstaDownload",
-    "message": "Fix: opened app doesnt take shared url",
-    "date": "2026-09-20T13:52:08.000+03:00"
+    "message": "Bump to 2.7.1",
+    "date": "2026-09-20T19:48:02.000+03:00"
   },
-  "updatedAt": "2026-09-20T14:25:00.301Z"
+  "updatedAt": "2026-09-20T17:51:26.049Z"
 }
