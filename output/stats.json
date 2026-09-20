@@ -1,5 +1,5 @@
 {
-  "commits": 878,
+  "commits": 880,
   "reposTouched": 32,
   "linesChanged": 538095,
   "additions": 437303,
@@ -7,8 +7,8 @@
   "netLines": 336511,
   "latestCommit": {
     "repo": "Orang-Studio/InstaDownload",
-    "message": "Prepare app for Google Play upload",
-    "date": "2026-09-19T13:32:45.000+03:00"
+    "message": "Fix: opened app doesnt take shared url",
+    "date": "2026-09-20T13:52:08.000+03:00"
   },
-  "updatedAt": "2026-09-20T10:25:34.986Z"
+  "updatedAt": "2026-09-20T14:25:00.301Z"
 }
