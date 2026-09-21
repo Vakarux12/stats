@@ -1,0 +1,67 @@
+name: Metrics
+on:
+  # Schedule daily updates
+  schedule: [{cron: "0 0 * * *"}]
+  # (optional) Run workflow manually
+  workflow_dispatch:
+  # (optional) Run workflow when pushing on main
+  push: {branches: ["main"]}
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          # Token is required - create a classic PAT (no scopes needed for
+          # public data, `repo` + `read:org` if you want private/traffic data)
+          # and save it as METRICS_TOKEN in repo Settings > Secrets > Actions
+          token: ${{ secrets.METRICS_TOKEN }}
+
+          # User whose metrics are rendered (defaults to token owner).
+          # Explicit so forks/scheduled runs stay pinned to you.
+          user: Vakarux12
+
+          template: classic
+          base: header
+          filename: output/github-metrics.svg
+          config_timezone: Europe/Moscow
+          config_order: base.header, isocalendar, calendar, languages, lines, habits, activity, traffic
+
+          # 🈷️ Languages activity (replaces stats_langs)
+          plugin_languages: yes
+          plugin_languages_limit: 8
+          plugin_languages_threshold: 0%
+          plugin_languages_details: lines, bytes-size
+          plugin_languages_sections: most-used, recently-used
+
+          # 👨‍💻 Lines of code changed (replaces general linesChanged)
+          plugin_lines: yes
+          plugin_lines_sections: repositories, history
+          plugin_lines_repositories_limit: 4
+          plugin_lines_history_limit: 1
+
+          # 📅 Isometric commit calendar + 📆 Commit calendar (replaces stats_commits)
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          plugin_calendar: yes
+          plugin_calendar_limit: 1
+
+          # 💡 Coding habits + 📰 Recent activity
+          plugin_habits: yes
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          plugin_habits_days: 14
+          plugin_habits_languages_limit: 8
+          plugin_activity: yes
+          plugin_activity_limit: 5
+          plugin_activity_load: 300
+          plugin_activity_days: 14
+          plugin_activity_visibility: public
+          plugin_activity_timestamps: yes
+
+          # 🧮 Repositories traffic (replaces stats_visitors - needs token with repo access to private traffic)
+          plugin_traffic: yes
