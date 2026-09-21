@@ -26,7 +26,7 @@ jobs:
           base: header
           filename: output/github-metrics.svg
           config_timezone: Europe/Moscow
-          config_order: base.header, isocalendar, calendar, languages, lines, habits, activity, traffic
+          config_order: base.header, isocalendar, calendar, languages, lines, traffic
 
           # 🈷️ Languages activity (replaces stats_langs)
           plugin_languages: yes
@@ -48,17 +48,13 @@ jobs:
           plugin_calendar_limit: 1
 
           # 💡 Coding habits + 📰 Recent activity
-          plugin_habits: yes
-          plugin_habits_facts: yes
-          plugin_habits_charts: yes
-          plugin_habits_days: 14
-          plugin_habits_languages_limit: 8
-          plugin_activity: yes
-          plugin_activity_limit: 5
-          plugin_activity_load: 300
-          plugin_activity_days: 14
-          plugin_activity_visibility: public
-          plugin_activity_timestamps: yes
+          # Disabled 2026-09-21: upstream bug in lowlighter/metrics@latest (v3.34)
+          # crashes on PushEvents with no commits array:
+          # activity: Cannot read properties of undefined (reading 'filter')
+          # habits: Cannot destructure property 'author' of 'undefined'
+          # See PRs #1807, #1834. Re-enable once @latest includes the fix.
+          plugin_habits: no
+          plugin_activity: no
 
           # 🧮 Repositories traffic (replaces stats_visitors - needs token with repo access to private traffic)
           plugin_traffic: yes
