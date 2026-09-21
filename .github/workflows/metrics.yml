@@ -9,17 +9,14 @@ on:
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
-    environment:
-      name: production
     permissions:
       contents: write
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          # Token is required - create a classic PAT (no scopes needed for
-          # public data, `repo` + `read:org` if you want private/traffic data)
-          # and save it as METRICS_TOKEN in repo Settings > Secrets > Actions
-          token: ${{ secrets.METRICS_TOKEN }}
+          # Reuses your existing ACCESS_TOKEN secret (already in repo).
+          # If you prefer a separate token, create METRICS_TOKEN and switch back.
+          token: ${{ secrets.ACCESS_TOKEN }}
 
           # User whose metrics are rendered (defaults to token owner).
           # Explicit so forks/scheduled runs stay pinned to you.
