@@ -26,7 +26,7 @@ jobs:
           base: header
           filename: output/github-metrics.svg
           config_timezone: Europe/Moscow
-          config_display: columns
+          config_display: large
           config_order: base.header, isocalendar, calendar, languages, lines, traffic
 
           # 🈷️ Languages activity (replaces stats_langs)
