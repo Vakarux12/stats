@@ -12,50 +12,61 @@ jobs:
     permissions:
       contents: write
     steps:
+      # Left column (regular 480px fixed - works with markdown + HTML)
       - uses: lowlighter/metrics@latest
         with:
           # Reuses your existing ACCESS_TOKEN secret (already in repo).
-          # If you prefer a separate token, create METRICS_TOKEN and switch back.
           token: ${{ secrets.ACCESS_TOKEN }}
-
-          # User whose metrics are rendered (defaults to token owner).
-          # Explicit so forks/scheduled runs stay pinned to you.
           user: Vakarux12
 
           template: classic
           base: header
-          filename: output/github-metrics.svg
+          filename: output/metrics-left.svg
           config_timezone: Europe/Moscow
-          config_display: large
-          config_order: base.header, isocalendar, calendar, languages, lines, traffic
+          config_display: regular
+          config_order: base.header, isocalendar, calendar, languages
 
-          # 🈷️ Languages activity (replaces stats_langs)
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          plugin_calendar: yes
+          plugin_calendar_limit: 1
+
           plugin_languages: yes
           plugin_languages_limit: 8
           plugin_languages_threshold: 0%
           plugin_languages_details: lines, bytes-size
           plugin_languages_sections: most-used, recently-used
 
-          # 👨‍💻 Lines of code changed (replaces general linesChanged)
+          plugin_lines: no
+          plugin_traffic: no
+          plugin_habits: no
+          plugin_activity: no
+
+      # Right column (regular 480px fixed - works with markdown + HTML)
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          user: Vakarux12
+
+          template: classic
+          base: header
+          filename: output/metrics-right.svg
+          config_timezone: Europe/Moscow
+          config_display: regular
+          config_order: base.header, lines, traffic
+
           plugin_lines: yes
           plugin_lines_sections: repositories, history
           plugin_lines_repositories_limit: 4
           plugin_lines_history_limit: 1
 
-          # 📅 Isometric commit calendar + 📆 Commit calendar (replaces stats_commits)
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
-          plugin_calendar: yes
-          plugin_calendar_limit: 1
+          # 🧮 Repositories traffic (needs token with repo access)
+          plugin_traffic: yes
 
-          # 💡 Coding habits + 📰 Recent activity
-          # Disabled 2026-09-21: upstream bug in lowlighter/metrics@latest (v3.34)
-          # crashes on PushEvents with no commits array:
-          # activity: Cannot read properties of undefined (reading 'filter')
-          # habits: Cannot destructure property 'author' of 'undefined'
-          # See PRs #1807, #1834. Re-enable once @latest includes the fix.
+          plugin_isocalendar: no
+          plugin_calendar: no
+          plugin_languages: no
+          # Disabled 2026-09-21: upstream bug in v3.34 crashes on PushEvents
+          # with no commits array (see PRs #1807, #1834)
           plugin_habits: no
           plugin_activity: no
-
-          # 🧮 Repositories traffic (replaces stats_visitors - needs token with repo access to private traffic)
-          plugin_traffic: yes
