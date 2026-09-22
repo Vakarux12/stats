@@ -1,14 +1,14 @@
 {
-  "commits": 900,
+  "commits": 899,
   "reposTouched": 33,
-  "linesChanged": 541263,
-  "additions": 440410,
-  "deletions": 100853,
-  "netLines": 339557,
+  "linesChanged": 540634,
+  "additions": 439820,
+  "deletions": 100814,
+  "netLines": 339006,
   "latestCommit": {
     "repo": "f-droid/fdroiddata",
     "message": "InstaDownload: Relicense from MIT to GPL-3.0",
     "date": "2026-09-21T19:44:27.000Z"
   },
-  "updatedAt": "2026-09-22T10:45:55.118Z"
+  "updatedAt": "2026-09-22T15:20:39.753Z"
 }
