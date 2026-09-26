@@ -177,17 +177,17 @@ div.ellipsis {
       <h2>Languages Used (By File Size)</h2>
       <div>
         <span class="progress">
-          <span class="progress-item" style="--final-width: 31.904821759505854%; --color: #4F5D95; --delay: 0.85s;"></span>
-          <span class="progress-item" style="--final-width: 29.218905947607933%; --color: #e34c26; --delay: 1.05s;"></span>
-          <span class="progress-item" style="--final-width: 11.35030424201453%; --color: #f1e05a; --delay: 1.26s;"></span>
-          <span class="progress-item" style="--final-width: 11.11575351058166%; --color: #3572A5; --delay: 1.46s;"></span>
-          <span class="progress-item" style="--final-width: 6.1530632894408495%; --color: #A97BFF; --delay: 1.67s;"></span>
-          <span class="progress-item" style="--final-width: 4.598119539472334%; --color: #3178c6; --delay: 1.88s;"></span>
-          <span class="progress-item" style="--final-width: 1.9479893167882887%; --color: #663399; --delay: 2.08s;"></span>
-          <span class="progress-item" style="--final-width: 1.9185929143181797%; --color: #00A2FF; --delay: 2.28s;"></span>
-          <span class="progress-item" style="--final-width: 0.7780555026195051%; --color: #DA5B0B; --delay: 2.49s;"></span>
-          <span class="progress-item" style="--final-width: 0.27866683720880514%; --color: #89e051; --delay: 2.69s;"></span>
-          <span class="progress-item" style="--final-width: 0.26395942080056267%; --color: #b07219; --delay: 2.90s;"></span>
+          <span class="progress-item" style="--final-width: 31.901505688795158%; --color: #4F5D95; --delay: 0.85s;"></span>
+          <span class="progress-item" style="--final-width: 29.226262676149688%; --color: #e34c26; --delay: 1.05s;"></span>
+          <span class="progress-item" style="--final-width: 11.349124532823922%; --color: #f1e05a; --delay: 1.26s;"></span>
+          <span class="progress-item" style="--final-width: 11.114598179737891%; --color: #3572A5; --delay: 1.46s;"></span>
+          <span class="progress-item" style="--final-width: 6.15242376250323%; --color: #A97BFF; --delay: 1.67s;"></span>
+          <span class="progress-item" style="--final-width: 4.5976416277120356%; --color: #3178c6; --delay: 1.88s;"></span>
+          <span class="progress-item" style="--final-width: 1.947786849889497%; --color: #663399; --delay: 2.08s;"></span>
+          <span class="progress-item" style="--final-width: 1.9183935027741543%; --color: #00A2FF; --delay: 2.28s;"></span>
+          <span class="progress-item" style="--final-width: 0.7779746343707188%; --color: #DA5B0B; --delay: 2.49s;"></span>
+          <span class="progress-item" style="--final-width: 0.27863787359497033%; --color: #89e051; --delay: 2.69s;"></span>
+          <span class="progress-item" style="--final-width: 0.26393198582190247%; --color: #b07219; --delay: 2.90s;"></span>
           </span>
           </div>
           <ul>
@@ -205,7 +205,7 @@ div.ellipsis {
                   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path>
                 </svg>
                 <span class="lang">HTML</span>
-                <span class="percent">29.22%</span>
+                <span class="percent">29.23%</span>
               </li>
               <li style="--li-delay: 1.26s;">
                 <svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#f1e05a;"
@@ -221,7 +221,7 @@ div.ellipsis {
                   <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path>
                 </svg>
                 <span class="lang">Python</span>
-                <span class="percent">11.12%</span>
+                <span class="percent">11.11%</span>
               </li>
               <li style="--li-delay: 1.67s;">
                 <svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#A97BFF;"
