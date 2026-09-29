@@ -1,14 +1,14 @@
 {
-  "commits": 909,
+  "commits": 914,
   "reposTouched": 34,
-  "linesChanged": 794293,
-  "additions": 695255,
-  "deletions": 99038,
-  "netLines": 596217,
+  "linesChanged": 800267,
+  "additions": 699955,
+  "deletions": 100312,
+  "netLines": 599643,
   "latestCommit": {
     "repo": "Vakarux12/mc-rust-port",
-    "message": "Initial Rust port",
-    "date": "2026-09-27T20:27:14.000+03:00"
+    "message": "Merge worktree-cmd-completer: op-gated command tree, /op + /deop with ops.json, arrow collision-shape clipping",
+    "date": "2026-09-29T20:38:21.000+03:00"
   },
-  "updatedAt": "2026-09-29T13:39:42.211Z"
+  "updatedAt": "2026-09-29T19:03:51.456Z"
 }
