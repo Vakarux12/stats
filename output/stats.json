@@ -1,14 +1,14 @@
 {
-  "commits": 914,
+  "commits": 915,
   "reposTouched": 34,
   "linesChanged": 800267,
   "additions": 699955,
   "deletions": 100312,
   "netLines": 599643,
   "latestCommit": {
-    "repo": "Vakarux12/mc-rust-port",
-    "message": "Merge worktree-cmd-completer: op-gated command tree, /op + /deop with ops.json, arrow collision-shape clipping",
-    "date": "2026-09-29T20:38:21.000+03:00"
+    "repo": "Orang-Studio/OrangLaunch",
+    "message": "Fix minecraft symlinking",
+    "date": "2026-10-02T14:05:12.000+03:00"
   },
-  "updatedAt": "2026-10-02T06:33:13.422Z"
+  "updatedAt": "2026-10-02T13:26:50.265Z"
 }
