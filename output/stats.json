@@ -6,9 +6,9 @@
   "deletions": 100312,
   "netLines": 599643,
   "latestCommit": {
-    "repo": "Orang-Studio/InstaDownload",
-    "message": "Bump to 2.7.2, descriptive file names (#25)",
-    "date": "2026-10-03T12:56:47.000+03:00"
+    "repo": "Orang-Studio/OrangPlayer",
+    "message": "add license",
+    "date": "2026-10-04T00:27:24.000+03:00"
   },
-  "updatedAt": "2026-10-03T19:40:42.602Z"
+  "updatedAt": "2026-10-03T22:36:07.194Z"
 }
