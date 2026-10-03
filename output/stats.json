@@ -1,14 +1,14 @@
 {
-  "commits": 915,
+  "commits": 919,
   "reposTouched": 34,
   "linesChanged": 800267,
   "additions": 699955,
   "deletions": 100312,
   "netLines": 599643,
   "latestCommit": {
-    "repo": "Orang-Studio/OrangLaunch",
-    "message": "Fix minecraft symlinking",
-    "date": "2026-10-02T14:05:12.000+03:00"
+    "repo": "Orang-Studio/InstaDownload",
+    "message": "Bump to 2.7.2, descriptive file names (#25)",
+    "date": "2026-10-03T12:56:47.000+03:00"
   },
-  "updatedAt": "2026-10-03T07:26:10.580Z"
+  "updatedAt": "2026-10-03T12:56:25.905Z"
 }
