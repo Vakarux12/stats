@@ -1,14 +1,14 @@
 {
-  "commits": 921,
+  "commits": 922,
   "reposTouched": 35,
-  "linesChanged": 800316,
-  "additions": 700004,
+  "linesChanged": 800345,
+  "additions": 700033,
   "deletions": 100312,
-  "netLines": 599692,
+  "netLines": 599721,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "feat(v3): add public /delete-account page and well-known pointer",
-    "date": "2026-10-05T06:46:29.000Z"
+    "message": "feat(v3): add public /child-safety CSAE standards page",
+    "date": "2026-10-05T18:47:12.000Z"
   },
-  "updatedAt": "2026-10-05T17:42:09.953Z"
+  "updatedAt": "2026-10-05T23:35:01.634Z"
 }
