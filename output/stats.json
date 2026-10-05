@@ -1,14 +1,14 @@
 {
-  "commits": 920,
+  "commits": 921,
   "reposTouched": 35,
-  "linesChanged": 800267,
-  "additions": 699955,
+  "linesChanged": 800316,
+  "additions": 700004,
   "deletions": 100312,
-  "netLines": 599643,
+  "netLines": 599692,
   "latestCommit": {
-    "repo": "Orang-Studio/OrangPlayer",
-    "message": "add license",
-    "date": "2026-10-04T00:27:24.000+03:00"
+    "repo": "Vakarux12/service-app",
+    "message": "feat(v3): add public /delete-account page and well-known pointer",
+    "date": "2026-10-05T06:46:29.000Z"
   },
-  "updatedAt": "2026-10-05T01:28:59.092Z"
+  "updatedAt": "2026-10-05T08:05:35.991Z"
 }
