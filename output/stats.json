@@ -1,14 +1,14 @@
 {
-  "commits": 952,
+  "commits": 954,
   "reposTouched": 36,
-  "linesChanged": 809047,
-  "additions": 708514,
-  "deletions": 100533,
-  "netLines": 607981,
+  "linesChanged": 821736,
+  "additions": 718434,
+  "deletions": 103302,
+  "netLines": 615132,
   "latestCommit": {
-    "repo": "Vakarux12/sisyphice",
-    "message": "Fix knockback force driving ragdolls after death",
-    "date": "2026-10-10T14:32:20.000+03:00"
+    "repo": "Vakarux12/mc-rust-port",
+    "message": "Merge branch 'main' of https://github.com/Vakarux12/mc-rust-port",
+    "date": "2026-10-11T09:30:02.000+03:00"
   },
-  "updatedAt": "2026-10-11T01:28:10.662Z"
+  "updatedAt": "2026-10-11T08:08:04.875Z"
 }
