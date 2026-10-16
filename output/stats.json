@@ -1,14 +1,14 @@
 {
-  "commits": 961,
-  "reposTouched": 36,
-  "linesChanged": 828346,
-  "additions": 723079,
-  "deletions": 105267,
-  "netLines": 617812,
+  "commits": 965,
+  "reposTouched": 37,
+  "linesChanged": 836776,
+  "additions": 731506,
+  "deletions": 105270,
+  "netLines": 626236,
   "latestCommit": {
-    "repo": "Orang-Studio/InstaDownload",
-    "message": "Update README.md",
-    "date": "2026-10-12T08:52:43.000+03:00"
+    "repo": "Vakarux12/raid-trafi-patches",
+    "message": "fix: spoof signingInfo too and say on screen when the spoof fails",
+    "date": "2026-10-16T12:00:23.000+03:00"
   },
-  "updatedAt": "2026-10-16T05:24:40.249Z"
+  "updatedAt": "2026-10-16T10:28:55.452Z"
 }
