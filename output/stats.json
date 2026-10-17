@@ -1,14 +1,14 @@
 {
-  "commits": 969,
+  "commits": 970,
   "reposTouched": 37,
   "linesChanged": 828346,
   "additions": 723079,
   "deletions": 105267,
   "netLines": 617812,
   "latestCommit": {
-    "repo": "Orang-Studio/AnarchyExploitFixes",
-    "message": "readme: mark as maintained fork, point urls to orang-studio, credit upstream",
-    "date": "2026-10-16T23:53:54.000+03:00"
+    "repo": "Orang-Studio/InstaDownload",
+    "message": "Update README.md",
+    "date": "2026-10-17T09:16:42.000+03:00"
   },
-  "updatedAt": "2026-10-17T05:19:44.017Z"
+  "updatedAt": "2026-10-17T09:59:40.437Z"
 }
