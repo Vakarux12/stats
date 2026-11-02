@@ -1,14 +1,14 @@
 {
-  "commits": 1014,
+  "commits": 1066,
   "reposTouched": 38,
-  "linesChanged": 864824,
-  "additions": 757840,
-  "deletions": 106984,
-  "netLines": 650856,
+  "linesChanged": 878483,
+  "additions": 769098,
+  "deletions": 109385,
+  "netLines": 659713,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "Port the 11 Python backend commits since Oct 17 to backend-rs",
-    "date": "2026-11-01T09:29:57.000Z"
+    "message": "db: drop 74 redundant/unused indexes, stop storing two write-only columns",
+    "date": "2026-11-02T18:57:08.000+02:00"
   },
-  "updatedAt": "2026-11-02T07:03:47.253Z"
+  "updatedAt": "2026-11-02T17:40:27.513Z"
 }
