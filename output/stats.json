@@ -1,14 +1,14 @@
 {
-  "commits": 1075,
+  "commits": 1081,
   "reposTouched": 38,
-  "linesChanged": 880470,
-  "additions": 770688,
-  "deletions": 109782,
-  "netLines": 660906,
+  "linesChanged": 881687,
+  "additions": 771859,
+  "deletions": 109828,
+  "netLines": 662031,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "Cookie consent banner for Google Analytics; trim legal docs",
-    "date": "2026-11-03T00:34:08.000Z"
+    "message": "Count each QR poster scan once per device",
+    "date": "2026-11-03T14:39:31.000Z"
   },
-  "updatedAt": "2026-11-03T07:27:52.094Z"
+  "updatedAt": "2026-11-03T15:43:55.861Z"
 }
