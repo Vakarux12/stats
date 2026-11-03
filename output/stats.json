@@ -1,14 +1,14 @@
 {
-  "commits": 1066,
+  "commits": 1074,
   "reposTouched": 38,
-  "linesChanged": 878483,
-  "additions": 769098,
-  "deletions": 109385,
-  "netLines": 659713,
+  "linesChanged": 880267,
+  "additions": 770521,
+  "deletions": 109746,
+  "netLines": 660775,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "db: drop 74 redundant/unused indexes, stop storing two write-only columns",
-    "date": "2026-11-02T18:57:08.000+02:00"
+    "message": "Android: edge to edge at the bottom too, tween the map drawer",
+    "date": "2026-11-02T23:17:34.000+02:00"
   },
-  "updatedAt": "2026-11-02T17:40:27.513Z"
+  "updatedAt": "2026-11-03T00:19:28.974Z"
 }
