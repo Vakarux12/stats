@@ -1,14 +1,14 @@
 {
-  "commits": 1088,
+  "commits": 1094,
   "reposTouched": 42,
-  "linesChanged": 881989,
-  "additions": 772007,
-  "deletions": 109982,
-  "netLines": 662025,
+  "linesChanged": 885057,
+  "additions": 773901,
+  "deletions": 111156,
+  "netLines": 662745,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "Fix legal-audit P0s: full account deletion, 18+ gate, blocks, no payouts",
-    "date": "2026-11-04T15:19:19.000Z"
+    "message": "Merge origin/main: settings i18n",
+    "date": "2026-11-04T19:37:57.000Z"
   },
-  "updatedAt": "2026-11-04T16:45:19.750Z"
+  "updatedAt": "2026-11-04T22:19:42.125Z"
 }
