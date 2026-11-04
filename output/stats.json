@@ -1,14 +1,14 @@
 {
-  "commits": 1087,
+  "commits": 1088,
   "reposTouched": 42,
-  "linesChanged": 881750,
-  "additions": 771918,
-  "deletions": 109832,
-  "netLines": 662086,
+  "linesChanged": 881989,
+  "additions": 772007,
+  "deletions": 109982,
+  "netLines": 662025,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "Helper poster heading on the map; cookie banner waits for page two",
-    "date": "2026-11-04T08:23:29.000Z"
+    "message": "Fix legal-audit P0s: full account deletion, 18+ gate, blocks, no payouts",
+    "date": "2026-11-04T15:19:19.000Z"
   },
-  "updatedAt": "2026-11-04T08:26:21.872Z"
+  "updatedAt": "2026-11-04T16:45:19.750Z"
 }
