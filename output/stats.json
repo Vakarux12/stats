@@ -1,14 +1,14 @@
 {
-  "commits": 1103,
+  "commits": 1106,
   "reposTouched": 42,
-  "linesChanged": 886383,
-  "additions": 774860,
-  "deletions": 111523,
-  "netLines": 663337,
+  "linesChanged": 886754,
+  "additions": 775132,
+  "deletions": 111622,
+  "netLines": 663510,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "collapse rajonai on setup screens, add web danger token, remove category em dashes",
-    "date": "2026-11-06T13:31:25.000+02:00"
+    "message": "Post flow: guests fill the whole form, sign in only to post",
+    "date": "2026-11-06T18:13:00.000Z"
   },
-  "updatedAt": "2026-11-06T12:40:04.437Z"
+  "updatedAt": "2026-11-06T19:48:42.148Z"
 }
