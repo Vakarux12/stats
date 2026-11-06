@@ -1,14 +1,14 @@
 {
-  "commits": 1095,
+  "commits": 1103,
   "reposTouched": 42,
-  "linesChanged": 885177,
-  "additions": 774017,
-  "deletions": 111160,
-  "netLines": 662857,
+  "linesChanged": 886383,
+  "additions": 774860,
+  "deletions": 111523,
+  "netLines": 663337,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "Admin: add Mail tab for plain email from any @verko.lt address",
-    "date": "2026-11-05T13:35:07.000Z"
+    "message": "collapse rajonai on setup screens, add web danger token, remove category em dashes",
+    "date": "2026-11-06T13:31:25.000+02:00"
   },
-  "updatedAt": "2026-11-06T04:40:16.921Z"
+  "updatedAt": "2026-11-06T12:40:04.437Z"
 }
