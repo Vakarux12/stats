@@ -1,14 +1,14 @@
 {
-  "commits": 1107,
+  "commits": 1108,
   "reposTouched": 42,
-  "linesChanged": 886754,
-  "additions": 775132,
-  "deletions": 111622,
-  "netLines": 663510,
+  "linesChanged": 886930,
+  "additions": 775265,
+  "deletions": 111665,
+  "netLines": 663600,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "Post flow: guests fill the whole form, sign in only to post",
-    "date": "2026-11-06T18:13:00.000Z"
+    "message": "Replace phone verified pill with inline BadgeCheck icon",
+    "date": "2026-11-09T10:49:35.000Z"
   },
-  "updatedAt": "2026-11-09T04:03:37.343Z"
+  "updatedAt": "2026-11-09T13:32:01.414Z"
 }
