@@ -1,14 +1,14 @@
 {
-  "commits": 1122,
+  "commits": 1124,
   "reposTouched": 42,
-  "linesChanged": 895850,
-  "additions": 781138,
-  "deletions": 114712,
-  "netLines": 666426,
+  "linesChanged": 897641,
+  "additions": 782752,
+  "deletions": 114889,
+  "netLines": 667863,
   "latestCommit": {
     "repo": "Vakarux12/service-app",
-    "message": "fix map worker mime and number flow styles under the csp",
-    "date": "2026-11-27T13:09:36.000+02:00"
+    "message": "v4 + backend-rs: stage-aware cancel/dispute, repost, delist/delete & interruptible transitions",
+    "date": "2026-11-27T19:23:07.000+02:00"
   },
-  "updatedAt": "2026-11-27T11:40:22.440Z"
+  "updatedAt": "2026-11-27T20:33:28.181Z"
 }
